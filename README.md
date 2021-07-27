@@ -19,6 +19,11 @@ otherwise, you can install it with
 
     sudo apt install python3-dev
 
+Package [jetson_stats](https://github.com/rbonghi/jetson_stats) is installed:
+
+    sudo -H pip install -U jetson-stats
+
+Service "automagic-fan" will be configured to start after "jetson_stats" service.
 
 ## How to install:
 run
