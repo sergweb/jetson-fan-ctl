@@ -1,5 +1,6 @@
 [Unit]
 Description=Automagic fan control
+After=jetson_stats.service
 
 [Service]
 Type=simple
