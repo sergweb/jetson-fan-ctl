@@ -1,5 +1,5 @@
 # jetson-fan-ctl
-Automagic fan control for the Nvidia Jetson Nano
+Automagic fan control for the Nvidia Jetson Nano with parameterized polinomial fan curve. Fork from [Pyrestone's project](https://github.com/Pyrestone/jetson-fan-ctl).
 
 ## Requirements:
 
@@ -37,10 +37,11 @@ open /etc/automagic-fan/config.json with your favorite editor (I'm using nano):
 you will find the following lines:
 
     {
-    "FAN_OFF_TEMP":20,
-    "FAN_MAX_TEMP":50,
+    "FAN_OFF_TEMP":35,
+    "FAN_MAX_TEMP":53,
     "UPDATE_INTERVAL":2,
-    "MAX_PERF":1
+    "MAX_PERF":1,
+    "FAN_CURVE_POWER":0.5
     }
 
 <code>FAN_OFF_TEMP</code> is the temperature (°C) below which the fan is turned off.  
@@ -49,6 +50,10 @@ The script interpolates linearly between these two points.
 
 <code>UPDATE_INTERVAL</code> tells the script how often to update the fan speed (in seconds).  
 <code>MAX_PERF</code> values greater than 0 maximize system performance by setting the CPU and GPU clock speeds to the maximum. 
+
+<code>FAN_CURVE_POWER</code> is the power of polinom in fan curve. 
+Prioritizes fan silence over board temperature if greater than 1 (e.g. 2) and board temperature over fan silence if less than 1 (e.g. 0.5).
+The value is equal to 1 if not specified explicitely in config.json file.
 
 You can use either integers (like 20) or floating point numbers (like 20.125) in each of these fields.  
 The temperature precision of the thermal sensors is 0.5 (°C), so don't expect this to be too precise.
